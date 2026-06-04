@@ -202,13 +202,15 @@ export async function POST(
     //
     // Save order items
     //
-
     const rows = orderItems.map(
-      (item) => ({
-        ...item,
-        order_id: order.id,
-      })
-    );
+        (item: {
+          daily_menu_id: string;
+          quantity: number;
+        }) => ({
+          ...item,
+          order_id: order.id,
+        })
+      );
 
     const {
       error: orderItemError,
