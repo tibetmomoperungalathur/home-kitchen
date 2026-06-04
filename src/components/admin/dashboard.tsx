@@ -247,13 +247,27 @@ export default function Dashboard() {
               </span>
 
               <span className="text-xs text-gray-500">
-                {new Date(
-                  order.created_at
-                ).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </span>
+  {(() => {
+    const date = new Date(order.created_at);
+    const parts = new Intl.DateTimeFormat('en-AU', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23'
+    }).formatToParts(date);
+
+    const d = parts.find(p => p.type === 'day').value;
+    const m = parts.find(p => p.type === 'month').value;
+    const y = parts.find(p => p.type === 'year').value;
+    const hr = parts.find(p => p.type === 'hour').value;
+    const min = parts.find(p => p.type === 'minute').value;
+
+    return `${d}-${m}-${y} ${hr}:${min}`;
+  })()}
+</span>
+
             </div>
           <div className="flex items-start justify-between">
             <div>
