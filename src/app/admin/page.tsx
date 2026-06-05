@@ -25,10 +25,6 @@ from "@/components/admin/dashboard";
     return (
         <main className="min-h-screen bg-gray-100 p-6">
       
-          <h1 className="mb-6 text-3xl font-bold">
-            Kitchen Dashboard
-          </h1>
-      
           <Dashboard />
       
         </main>

@@ -7,6 +7,9 @@ import {
   } from "@/lib/supabase/server";
   
   export async function GET() {
+    const today = new Date();
+today.setHours(0, 0, 0, 0);
+
     const { data, error } =
       await supabaseAdmin
         .from("orders")
@@ -21,6 +24,10 @@ import {
             *
           )
         `)
+        .gte(
+            "created_at",
+            today.toISOString()
+          )
         .order(
           "created_at",
           {
